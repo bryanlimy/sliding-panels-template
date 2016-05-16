@@ -1,2 +1,10 @@
-# sliding-panels-template
-Mofication of Sliding Panels Template from codyhouse.co
+# Sliding Panels Template
+Mofication of Sliding Panels Template from [codyhouse.co](http://codyhouse.co/gem/sliding-panels-template/)
+
+A simple portfolio template, with project preview images that slide out to reveal the selected project.
+
+[Original Article on CodyHouse](http://codyhouse.co/gem/sliding-panels-template/)
+
+[Origianl Demo](https://codyhouse.co/demo/sliding-panels-template/index.html)
+
+Images: [Unsplash](https://unsplash.com/)
