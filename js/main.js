@@ -21,33 +21,20 @@ jQuery(document).ready(function($){
 			animating = true;
 			navigationTrigger.add(projectsContainer).addClass('project-open');
 			openProject($(this).parent('li'));
+			navigationTrigger.css("display", "inherit");
 		}
 	});
 
 	navigationTrigger.on('click', function(event){
 		event.preventDefault();
-		
 		if( animating == false ) {
 			animating = true;
 			if( navigationTrigger.hasClass('project-open') ) {
 				//close visible project
 				navigationTrigger.add(projectsContainer).removeClass('project-open');
 				closeProject();
-			} else if( navigationTrigger.hasClass('nav-visible') ) {
-				//close main navigation
-				navigationTrigger.removeClass('nav-visible');
-				navigation.removeClass('nav-clickable nav-visible');
-				if(transitionsNotSupported) projectPreviews.removeClass('slide-out');
-				else slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, false);
-			} else {
-				//open main navigation
-				navigationTrigger.addClass('nav-visible');
-				navigation.addClass('nav-visible');
-				if(transitionsNotSupported) projectPreviews.addClass('slide-out');
-				else slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, true);
 			}
-		}	
-
+		}
 		if(transitionsNotSupported) animating = false;
 	});
 
@@ -97,6 +84,7 @@ jQuery(document).ready(function($){
 			projects.find('.content-visible').removeClass('content-visible');
 			animating = false;
 		}
+		navigationTrigger.css("display", "none");
 	}
 
 	function slideToggleProjects(projectsPreviewWrapper, projectIndex, index, bool) {
@@ -127,7 +115,6 @@ jQuery(document).ready(function($){
 		}
 	}
 
-	//http://stackoverflow.com/questions/19351759/javascript-random-number-out-of-5-no-repeat-until-all-have-been-used
 	function makeUniqueRandom() {
 	    var index = Math.floor(Math.random() * uniqueRandoms.length);
 	    var val = uniqueRandoms[index];
@@ -145,11 +132,6 @@ jQuery(document).ready(function($){
 	}
 });
 
- /*
- * BG Loaded
- * Copyright (c) 2014 Jonathan Catmull
- * Licensed under the MIT license.
- */
  (function($){
  	$.fn.bgLoaded = function(custom) {
 	 	var self = this;
