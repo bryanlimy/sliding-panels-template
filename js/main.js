@@ -1,10 +1,10 @@
 jQuery(document).ready(function($){
 	//cache DOM elements
-	var projectsContainer = $('.cd-projects-container'),
-		projectsPreviewWrapper = projectsContainer.find('.cd-projects-previews'),
+	var projectsContainer = $('.projects-container'),
+		projectsPreviewWrapper = projectsContainer.find('.previews'),
 		projectPreviews = projectsPreviewWrapper.children('li'),
-		projects = projectsContainer.find('.cd-projects'),
-		navigationTrigger = $('.cd-nav-trigger'),
+		projects = projectsContainer.find('.projects'),
+		navigationCloseButton = $('.close-button'),
 		navigation = $('.cd-primary-nav'),
 		//if browser doesn't support CSS transitions...
 		transitionsNotSupported = ( $('.no-csstransitions').length > 0);
@@ -19,28 +19,23 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 		if( animating == false ) {
 			animating = true;
-			navigationTrigger.add(projectsContainer).addClass('project-open');
+			navigationCloseButton.add(projectsContainer).addClass('project-open');
 			openProject($(this).parent('li'));
-			navigationTrigger.css("display", "inherit");
+			navigationCloseButton.css("display", "inherit");
 		}
 	});
 
-	navigationTrigger.on('click', function(event){
+	navigationCloseButton.on('click', function(event){
 		event.preventDefault();
 		if( animating == false ) {
 			animating = true;
-			if( navigationTrigger.hasClass('project-open') ) {
+			if( navigationCloseButton.hasClass('project-open') ) {
 				//close visible project
-				navigationTrigger.add(projectsContainer).removeClass('project-open');
+				navigationCloseButton.add(projectsContainer).removeClass('project-open');
 				closeProject();
 			}
 		}
 		if(transitionsNotSupported) animating = false;
-	});
-
-	//scroll down to project info
-	projectsContainer.on('click', '.scroll', function(){
-		projectsContainer.animate({'scrollTop':$(window).height()}, 500); 
 	});
 
 	//check if background-images have been loaded and show project previews
@@ -84,7 +79,7 @@ jQuery(document).ready(function($){
 			projects.find('.content-visible').removeClass('content-visible');
 			animating = false;
 		}
-		navigationTrigger.css("display", "none");
+		navigationCloseButton.css("display", "none");
 	}
 
 	function slideToggleProjects(projectsPreviewWrapper, projectIndex, index, bool) {
